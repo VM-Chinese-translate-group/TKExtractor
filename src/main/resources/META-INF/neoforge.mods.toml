@@ -69,7 +69,7 @@ description='''${mod_description}'''
     # Optional field describing why the dependency is required or why it is incompatible
     # reason="..."
     # The version range of the dependency
-    versionRange="[${neo_version},)" #mandatory
+    versionRange="[21.1.1,)" #mandatory
     # An ordering relationship for the dependency.
     # BEFORE - This mod is loaded BEFORE the dependency
     # AFTER - This mod is loaded AFTER the dependency
@@ -86,6 +86,12 @@ description='''${mod_description}'''
     ordering="NONE"
     side="BOTH"
 
+[[dependencies.${mod_id}]]
+    modId="mekanism"
+    mandatory=false # 关键：设置为 false 表示这是可选的
+    versionRange="[10.4.0,)" # 最好指定一个你开发时使用的 Mekanism 版本范围
+    ordering="AFTER" # 确保在 Mekanism 加载后再加载
+    side="BOTH"
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.

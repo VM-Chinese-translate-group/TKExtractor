@@ -1,0 +1,10 @@
+{
+  "commands.tkextractor.scanning": "正在扫描所有注册表以查找自定义名称... 这可能需要一些时间。",
+  "commands.tkextractor.scan.complete": "扫描完成。共找到 %s 个自定义名称。正在过滤...",
+  "commands.tkextractor.filter.all": "准备保存所有找到的键。",
+  "commands.tkextractor.filter.namespace": "正在为命名空间 '%s' 进行过滤...",
+  "commands.tkextractor.success": "成功为 '%s' 提取了 %s 个键。",
+  "commands.tkextractor.error.no_keys": "未找到适用于筛选器 '%s' 的自定义显示名称。",
+  "commands.tkextractor.error.write_failed": "写入文件时出错: %s",
+  "commands.tkextractor.file_saved_to": "文件已保存至: %s"
+}

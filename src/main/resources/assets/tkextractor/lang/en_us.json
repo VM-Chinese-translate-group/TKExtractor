@@ -1,0 +1,10 @@
+{
+  "commands.tkextractor.scanning": "Scanning all registries for custom names... This may take a moment.",
+  "commands.tkextractor.scan.complete": "Scan complete. Found %s total custom names. Filtering...",
+  "commands.tkextractor.filter.all": "Preparing to save all found keys.",
+  "commands.tkextractor.filter.namespace": "Filtering for namespace: '%s'...",
+  "commands.tkextractor.success": "Successfully extracted %s keys for '%s'.",
+  "commands.tkextractor.error.no_keys": "No custom display names found for filter: '%s'",
+  "commands.tkextractor.error.write_failed": "Error writing to file: %s",
+  "commands.tkextractor.file_saved_to": "File saved to: %s"
+}
