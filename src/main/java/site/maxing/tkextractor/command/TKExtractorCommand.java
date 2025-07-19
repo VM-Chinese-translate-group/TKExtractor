@@ -26,13 +26,12 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforgespi.language.IModInfo;
 import site.maxing.tkextractor.TKExtractor;
+import site.maxing.tkextractor.compat.MekanismCompat;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -78,6 +77,17 @@ public class TKExtractorCommand {
         allCustomNames.putAll(extractAllFromRegistry(BuiltInRegistries.BLOCK));
         allCustomNames.putAll(extractAllFromRegistry(BuiltInRegistries.FLUID));
         allCustomNames.putAll(extractAllFromRegistry(BuiltInRegistries.ENTITY_TYPE));
+
+        if (ModList.get().isLoaded("mekanism")) {
+            try {
+                // 如果 Mekanism 加载了，就从它的注册表中提取数据
+                allCustomNames.putAll(MekanismCompat.extractChemicals());
+                source.sendSystemMessage(Component.literal("Mekanism detected, adding chemicals to scan list.")); // 可以加一条提示信息
+            } catch (Exception e) {
+                source.sendFailure(Component.literal("Failed to extract data from Mekanism. Maybe an incompatible version?"));
+                e.printStackTrace();
+            }
+        }
 
         source.sendSystemMessage(Component.translatable("commands.tkextractor.scan.complete", allCustomNames.size()));
 
