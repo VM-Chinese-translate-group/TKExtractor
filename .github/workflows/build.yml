@@ -18,8 +18,32 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      # --- 新增步骤：下载 Mekanism 依赖 ---
+      - name: Download Mekanism Dependency
+        run: |
+          # 创建 libs 目录（如果不存在）
+          mkdir -p libs
+          
+          # 定义下载 URL 和目标文件名
+          MEK_URL="https://github.com/mekanism/Mekanism/releases/download/v1.21.1-10.7.14.79/Mekanism-1.21.1-10.7.14.79.jar"
+          MEK_FILE="libs/Mekanism-1.21.1-10.7.14.79.jar"
+          
+          # 使用 curl 下载文件。-L 跟随重定向，-o 指定输出文件
+          echo "Downloading Mekanism from $MEK_URL..."
+          curl -L -o "$MEK_FILE" "$MEK_URL"
+          echo "Download complete. File saved to $MEK_FILE"
+          
+          # (可选) 验证文件是否存在
+          if [ ! -f "$MEK_FILE" ]; then
+            echo "Error: Mekanism JAR file not found after download!"
+            exit 1
+          fi
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build with Gradle
-        run: ./gradlew build
+        # 为 gradlew 添加执行权限，这在某些环境下是必需的
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build
